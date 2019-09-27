@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'quiz_brain.dart';
 
 void main() => runApp(Quizzler());
+
+QuizBrain quizBrain = QuizBrain();
 
 class Quizzler extends StatelessWidget {
   @override
@@ -27,8 +30,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
 
-  int questionNumber = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +42,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNumber].question,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -65,15 +66,17 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool result = quizBrain.getCorrectAnswer();
                 setState(() {
-                  questionNumber++;
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ),
-                  );
+//                  scoreKeeper.add(
+//                    Icon(
+//                      Icons.check,
+//                      color: Colors.green,
+//                    ),
+//                  );
+                  quizBrain.nextQuestion();
                 });
+                print(result == true);
               },
             ),
           ),
@@ -91,15 +94,18 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool result = quizBrain.getCorrectAnswer();
+
                 setState(() {
-                  questionNumber++;
-                  scoreKeeper.add(
-                    Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ),
-                  );
+//                  scoreKeeper.add(
+//                    Icon(
+//                      Icons.close,
+//                      color: Colors.red,
+//                    ),
+//                  );
+                  quizBrain.nextQuestion();
                 });
+                print(result == false);
               },
             ),
           ),
