@@ -9,12 +9,20 @@ class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child: QuizPage(),
+      home: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/RGB_smoke.jpg'),
+            fit: BoxFit.fitHeight,
+          ),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.grey.shade900,
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
+              child: QuizPage(),
+            ),
           ),
         ),
       ),
